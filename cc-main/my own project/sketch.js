@@ -33,7 +33,7 @@ x=0
 dashPlayer=createSprite(150,630)
 dashPlayer.addImage(dashPlayerImage)
 dashPlayer.scale=0.35
-
+dashPlayer.debug=true
 spike1=createSprite(300,635)
 spike1.addImage(spike1Img)
 spike1.scale=0.4
@@ -48,22 +48,23 @@ spike3.scale=0.5
 
 ground=createSprite(750,700,1500,70)
 ground.shapeColor="green"
-ground.x = ground.width/2;
 ground.velocityX=-4;
-
+ground.visible=true
 var invisibleGround2=createSprite(1400,random(450,550),200,20)
 invisibleGround2.shapeColor="green"
-invisibleGround2.visibile=false
+invisibleGround2.visible=false
 
-invisibleGround=createSprite(750,700,1500,70)
+invisibleGround=createSprite(750,700,1400,70)
 invisibleGround.shapeColor="green"
-invisibleGround.visibile=false
+invisibleGround.visible=false
+// invisibleGround.velocityX=-4;
+
 }
 function draw(){
   background("skyblue")
 
-  if(ground.x>0){
-   ground.x=750
+  if(ground.x>width/2){
+   ground.x=1500
   }
   if(keyDown("space") && dashPlayer.y>=450){
     dashPlayer.velocityY=-2
@@ -75,7 +76,7 @@ function draw(){
   }
     //dashPlayer.collide(invisibleGround2)
   
-    //spike1.collide(invisibleGround)
+    dashPlayer.collide(ground)
     //spike2.collide(invisibleGround)
     //spike3.collide(invisibleGround)
 drawSprites();
